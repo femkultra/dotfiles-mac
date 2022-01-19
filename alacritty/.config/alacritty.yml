@@ -16,6 +16,6 @@ font:
 
 #colors
 import: 
-  - ~/.config/alacritty/nord.yml
+  - ~/.config/alacritty/gruvbox.yml
 
 decorations: transparent
