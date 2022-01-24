@@ -1,16 +1,16 @@
 #Fonts
 font:
   normal:
-    family: SauceCodePro Nerd Font 
+    family: FiraCode Nerd Font 
     style: Regular
   italic:
-    family: SauceCodePro Nerd Font 
+    family: FiraCode Nerd Font 
     style: Italic
   bold:
-    family: SauceCodePro Nerd Font
+    family: FiraCode Nerd Font
     style: Bold
   bold_italic:
-    family: SauceCodePro Nerd Font 
+    family: FiraCode Nerd Font 
     style: Bold Italic
   size: 12
 
