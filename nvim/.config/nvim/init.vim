@@ -6,54 +6,46 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set encoding=utf8
+set nohlsearch
+set splitright
+set splitbelow
+
 let g:airline_powerline_fonts = 1
 
 call plug#begin("~/.vim/plugged")
-Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'gruvbox-community/gruvbox'
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+    Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'liuchengxu/vim-which-key'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 if (has("termguicolors"))
 set termguicolors
 endif
 syntax enable
-colorscheme gruvbox
+let ayucolor="mirage"
+colorscheme ayu
 
-let mapleader = " "
-nnoremap <leader>pv :Vex<CR>
-nnoremap <leader>pf :Files<CR>
-inoremap jk <esc>:w<CR>
-nnoremap <C-p> :GFiles<CR>
+let g:mapleader = "\<Space>"
+nnoremap <silent> <leader> :WhichKey'<Space>'<CR>
+set timeoutlen=500
 
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 0
-let g:NERDTreeIgnore = ['node_modules']
-let NERDTreeStatusLine='NERDTree'
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Toggle
-nnoremap <silent> <C-a> :NERDTreeToggle<CR>
+nmap <silent><c-h> :wincmd h
+nmap <silent><c-j> :wincmd j
+nmap <silent><c-k> :wincmd k
+nmap <silent><c-l> :wincmd l
 
-" open new split panes to right and below
-set splitright
-set splitbelow
-" turn terminal to normal mode with escape
+nnoremap <leader>a  :NERDTreeToggle<CR>
+nnoremap <leader>f  :Files<CR>
 tnoremap <Esc> <C-\><C-n>
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" open terminal on ctrl+n
-function! OpenTerminal()
-split term://zsh
-resize 10
-endfunction
-nnoremap <c-n> :call OpenTerminal()<CR>
-let g:prettier#autoformat_config_present = 1
-let g:prettier#config#config_precedence = 'prefer-file'
+nnoremap <leader>t  :sp term://zsh<CR>:resize 10<CR>
+nnoremap <leader>r  :!javac %<cr>:sp term://zsh<CR>"java -cp %"<CR>
